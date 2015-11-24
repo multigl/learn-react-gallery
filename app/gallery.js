@@ -87,7 +87,17 @@ var Gallery = React.createClass({
         this.setState({photo: previous});
     },
 
+    handleThumbnailSelect: function(photo) {
+        this.setState({photo: photo});
+    },
+
     render: function() {
+        var thumbnails = this.props.data.photos.map(_.bind(function(photo) {
+                return (
+                    <Thumbnail data={photo} key={photo.id} current={this.state.photo} onThumbnailClick={this.handleThumbnailSelect}/>
+                );
+            }, this));
+
         return (
             <div className="image-gallery">
                 <AlbumTitle data={this.props.data.album}/>
@@ -95,7 +105,9 @@ var Gallery = React.createClass({
                 <div className="navigate next"><img src="assets/nav/right.png" alt="next image" onClick={this.navigateNext}/></div>
                 <ImageHero data={this.state.photo}/>
                 <ImageDescription data={this.state.photo}/>
-                <ThumbnailList current={this.state.photo} data={this.props.data.photos}/>
+                <ul>
+                    {thumbnails}
+                </ul>
             </div>
         );
     }
@@ -121,36 +133,25 @@ var ImageDescription = React.createClass({
     render: function() {
         return (
             <div className="img-description">
-                <span class="img-title">{this.props.data.title}</span>
+                <span className="img-title">{this.props.data.title}</span>
                 <p>Taken on {this.props.data.date} in {this.props.data.location}</p>
             </div>
         );
     }
 });
 
-var ThumbnailList = React.createClass({
-    render: function() {
-        var current_id = this.props.current.id,
-            thumbnails = this.props.data.map(function(photo) {
-                return (
-                    <Thumbnail data={photo} key={photo.id} is_current={current_id === photo.id}/>
-                );
-            });
-
-        return (
-            <ul>
-                {thumbnails}
-            </ul>
-        );
-    }
-});
-
 var Thumbnail = React.createClass({
+
+    selectThumbnail: function() {
+        // inform my container that I've been clicked
+        this.props.onThumbnailClick(this.props.data);
+    },
+
     render: function() {
-        var img_class = this.props.is_current ? "selected" : "not-selected";
+        var img_class = this.props.current.id === this.props.data.id ? "selected" : "not-selected";
 
         return (
-            <li><img className={img_class} src={this.props.data.thumb_url} alt={this.props.data.title}/></li>
+            <li><img className={img_class} src={this.props.data.thumb_url} alt={this.props.data.title} onClick={this.selectThumbnail}/></li>
         )
     }
 });
