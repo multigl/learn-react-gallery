@@ -1,0 +1,108 @@
+body {
+  background-color: #5e6269;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+div#content {
+  display: block;
+  margin: 0 auto;
+  width: 1218px;
+  position: relative;
+}
+
+div.image-gallery {
+  height: 811px;
+}
+
+div.album-title {
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, .5);
+  text-align: center;
+  display: block;
+  z-index: 2;
+  position: absolute;
+}
+
+div.album-title > div {
+  font-size: 40px;
+  z-index: 3;
+  line-height: 100px;
+}
+
+div.navigate {
+  position: absolute;
+  z-index: 3;
+  top: 355px;
+}
+
+div.navigate.prev {
+  left: 40px;
+}
+
+div.navigate.next {
+  right: 40px;
+}
+
+img.hero {
+  position: relative;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+div.img-description {
+  position: absolute;
+  left: 0;
+  top: 696px;
+  z-index: 2;
+  width: 100%;
+  height: 115px;
+  background-color: rgba(0, 0, 0, .5);
+  text-align: center;
+}
+
+div.img-description > div.img-title {
+  font-size: 28px;
+  margin-top: 20px;
+}
+
+div.img-description > p {
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+ul.thumbnails {
+  height: 157px;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+ul.thumbnails > li {
+  display: inline;
+  margin-left: 3px;
+  margin-right: 4px;
+  height: 100px;
+  position: relative;
+  top: 28px;
+}
+
+ul.thumbnails > li.not-selected > img {
+  height: 70px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+ul.thumbnails > li.selected {
+  margin-left: 6px;
+  margin-right: 7px;
+}
+
+ul.thumbnails > li.selected > img {
+  height: 100px;
+}
+

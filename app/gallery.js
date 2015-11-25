@@ -99,13 +99,19 @@ var Gallery = React.createClass({
             }, this));
 
         return (
-            <div className="image-gallery">
-                <AlbumTitle data={this.props.data.album}/>
-                <div className="navigate prev"><img src="assets/nav/left.png" alt="previous image" onClick={this.navigatePrevious}/></div>
-                <div className="navigate next"><img src="assets/nav/right.png" alt="next image" onClick={this.navigateNext}/></div>
-                <ImageHero data={this.state.photo}/>
-                <ImageDescription data={this.state.photo}/>
-                <ul>
+            <div>
+                <div className="image-gallery">
+                    <AlbumTitle data={this.props.data.album}/>
+                    <div className="navigate prev">
+                        <img src="assets/nav/left.png" alt="previous image" onClick={this.navigatePrevious}/>
+                    </div>
+                    <div className="navigate next">
+                        <img src="assets/nav/right.png" alt="next image" onClick={this.navigateNext}/>
+                    </div>
+                    <ImageHero data={this.state.photo}/>
+                    <ImageDescription data={this.state.photo}/>
+                </div>
+                <ul className="thumbnails">
                     {thumbnails}
                 </ul>
             </div>
@@ -133,7 +139,7 @@ var ImageDescription = React.createClass({
     render: function() {
         return (
             <div className="img-description">
-                <span className="img-title">{this.props.data.title}</span>
+                <div className="img-title">{this.props.data.title}</div>
                 <p>Taken on {this.props.data.date} in {this.props.data.location}</p>
             </div>
         );
@@ -151,7 +157,7 @@ var Thumbnail = React.createClass({
         var img_class = this.props.current.id === this.props.data.id ? "selected" : "not-selected";
 
         return (
-            <li><img className={img_class} src={this.props.data.thumb_url} alt={this.props.data.title} onClick={this.selectThumbnail}/></li>
+            <li className={img_class}><img src={this.props.data.thumb_url} alt={this.props.data.title} onClick={this.selectThumbnail}/></li>
         )
     }
 });
